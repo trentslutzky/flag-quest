@@ -110,13 +110,20 @@ export default function App(){
         <>
             <MainContainer>
                 <TitleContainer>
-                    <Title>Flag Quest</Title>
-                    <StreakText>Streak: {streak}</StreakText>
+                    <TitleLine>
+                        <FlagIcon className="fab fa-font-awesome-flag"></FlagIcon>
+                        <Title>Flag Quest</Title>
+                        <FlagIcon className="fab fa-font-awesome-flag"></FlagIcon>
+                    </TitleLine>
+                    <StreakLine>
+                        <FireIcon className="fas fa-fire"></FireIcon>
+                        <StreakText>Streak: {streak}</StreakText>
+                    </StreakLine>
                 </TitleContainer>
                 <FlagContainer id="flag_container">
                     <MainFlag 
                         id="flag" 
-                        src={randomCountries[activeCountryIndex].cca2.toLowerCase()+".svg"}
+                        src={"flags/"+randomCountries[activeCountryIndex].cca2.toLowerCase()+".svg"}
                         className="scale-in-center"
                     />
                 </FlagContainer>
@@ -149,9 +156,9 @@ export default function App(){
                         {randomCountries[3].name.common}
                     </CountryButton>
                 </ButtonsRow>
-                <BottomSpace/>
                 <Footer>
-                    <p>Created by TrentLS</p>
+                    <span>Created by TrentLS</span>
+                    <GithubIcon className="fab fa-github"></GithubIcon>
                 </Footer>
             </MainContainer>
         </>
@@ -220,6 +227,9 @@ const TitleContainer = styled.div`
     margin-top: 20px;
     border-radius: 0.5em;
     color:white;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 `;
 
 const StatusText = styled.h1`
@@ -229,8 +239,7 @@ const StatusText = styled.h1`
 `;
 
 const Footer = styled.div`
-   position:absolute;
-   bottom:0px;
+    color:#ffffff73;
 `;
 
 const StreakText = styled.p`
@@ -239,7 +248,30 @@ const StreakText = styled.p`
     font-size:20px;
 `;
 
-const BottomSpace = styled.div`
-    width:100%;
-    height:52px;
+const GithubIcon = styled.i`
+   margin-left:10px; 
+   cursor:pointer;
+`;
+
+const TitleLine = styled.div`
+    display:inline-flex;
+    align-items:center;
+`;
+
+const FlagIcon = styled.i`
+    color:#df00ff40;
+    font-size:25px;
+    margin-left:10px;
+    margin-right:10px;
+`;
+
+const StreakLine = styled.div`
+    display:inline-flex;
+    align-items:center;
+`;
+
+const FireIcon = styled.i`
+    color:#ff6000a8;
+    font-size:20px;
+    margin-right:10px;
 `;
