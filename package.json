@@ -1,0 +1,18 @@
+{
+  "name": "flagquiz",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html --open"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "countries-api": "^2.0.2",
+    "parcel-bundler": "^1.12.5",
+    "parcel-plugin-static-files-copy": "^2.6.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.0",
+    "svg-country-flags": "^1.2.10"
+  }
+}
