@@ -10,8 +10,8 @@ export default function App(){
     const [activeCountryIndex, setActiveCountryIndex] = useState(null);
     const [streak, setStreak] = useState(0);
 
-    var correct_texts = ['Yes!','Correct!','Yep.','Smart.','Nice.',': )']
-    var incorrect_texts = ['Incorrect.','Nope.','No.','Really?','Wrong.','That was an easy one...',': (']
+    var correct_texts = ['Yes!','Correct!','Yep.','Smart.','Nice.']
+    var incorrect_texts = ['Incorrect.','Nope.','No.','Really?','Wrong.']
     var hmm_texts = ['What country is this?','You should know this one.','Take a guess.','An easy one.']
 
     // don't include these because they don't have flags
@@ -120,7 +120,7 @@ export default function App(){
                         className="scale-in-center"
                     />
                 </FlagContainer>
-                <StatusText id="status_text">That was an easy one...</StatusText>
+                <StatusText id="status_text">Which country?</StatusText>
                 <ButtonsRow>
                     <CountryButton 
                         id={randomCountries[0].id}
