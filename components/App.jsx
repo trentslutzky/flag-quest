@@ -15,14 +15,24 @@ const url = 'https://www.flag.quest/flag-quest-backend';
 //const url = 'http://localhost:5000';
 
 export default function App(){
-    // get api key from env
-    const API_KEY = process.env['FLAG_QUEST_API_KEY'];
 
-    const token = Cookie.get('auth_token') ? Cookie.get('auth_token') : null;
-
+    const [token, setToken] = useState(null);
     const [userData, setUserData] = useState(null);
+    const [API_KEY, setAPI_KEY] = useState(null);
 
     useEffect(()=>{
+        if(token == null){
+            setToken(Cookie.get('auth_token') ? Cookie.get('auth_token') : null);
+        } else {
+            console.log('got token: '+token)
+        }
+
+        if(API_KEY == null){
+            setAPI_KEY(process.env['FLAG_QUEST_API_KEY'])
+        } else {
+            console.log('got api key: '+API_KEY)
+        }
+
         if(userData == null && token != null){
             fetch(url+'/authenticate_user?api_key='+API_KEY,{
                 method:'POST',
@@ -44,7 +54,7 @@ export default function App(){
                         <Game/>
                     </Route>
                     <Route path="/account">
-                        <Account userData={userData} url={url}/>
+                        <Account userData={userData} url={url} API_KEY={API_KEY}/>
                     </Route>
                 </Switch>
                 <Footer>

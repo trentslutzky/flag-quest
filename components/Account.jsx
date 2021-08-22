@@ -8,11 +8,9 @@ export function Account(props){
 
     var userData = props.userData;
     var url = props.url;
+    var API_KEY = props.API_KEY;
 
     const [isSubmitting, setSubmitting] = useState(false); 
-
-    // get api key from env
-    const API_KEY = process.env['FLAG_QUEST_API_KEY'];
 
     function RegisterFormSubmit(values){
         setSubmitting(true);
