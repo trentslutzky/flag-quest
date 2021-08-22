@@ -7,6 +7,7 @@ import Cookies from 'js-cookie'
 export function Account(props){
 
     var userData = props.userData;
+    var url = props.url;
 
     const [isSubmitting, setSubmitting] = useState(false); 
 
@@ -16,7 +17,7 @@ export function Account(props){
     function RegisterFormSubmit(values){
         setSubmitting(true);
         delete values.password_confirm
-        fetch('http://192.168.1.80:5000/register?api_key='+API_KEY,{
+        fetch(url+'/register?api_key='+API_KEY,{
             method:'POST',
             mode:'cors',
             headers:{'Content-Type': 'application/json'},

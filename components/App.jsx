@@ -11,6 +11,9 @@ import {TopBar} from './TopBar.jsx';
 import {Game} from './Game.jsx';
 import {Account} from './Account.jsx';
 
+const url = 'https://www.flag.quest/flag-quest-backend';
+//const url = 'http://localhost:5000';
+
 export default function App(){
     // get api key from env
     const API_KEY = process.env['FLAG_QUEST_API_KEY'];
@@ -21,7 +24,7 @@ export default function App(){
 
     useEffect(()=>{
         if(userData == null && token != null){
-            fetch('http://192.168.1.80:5000/authenticate_user?api_key='+API_KEY,{
+            fetch(url+'/authenticate_user?api_key='+API_KEY,{
                 method:'POST',
                 mode:'cors',
                 headers:{'Content-Type': 'application/json'},
