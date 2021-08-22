@@ -9,14 +9,23 @@
         <meta http-equiv='Cache-control' content='no-store'>
         <meta http-equiv='expires' content='0'>
         <meta http-equiv='pragma' content='no-cache'>
-        <title> Flag Quiz </title>
+        <title>Flag Quest</title>
+        <link rel="stylesheet" href="./static/fonts/fontawesome-free-5.15.4-web/css/all.min.css">
     </head>
-    <link rel="stylesheet" href="./static/fonts/fontawesome-free-5.15.4-web/css/all.min.css">
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
     body {
         color:white;
         font-family: 'Montserrat', sans-serif;
+        background: #36D1DC;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #5B86E5, #36D1DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background-attachment:fixed;
+        background-repeat:no-repeat;
+        height:50vh;
+    }
+
+    .gradientbackgroundold{
         background: linear-gradient(-45deg, #e73c7e, #23a6d5, #23d5ab);
         background-size: 400% 400%;
         animation: gradient 15s ease infinite;

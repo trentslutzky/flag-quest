@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import Countries from 'countries-api';
 import styled from 'styled-components';
 
-export default function App(){
+export function Game(){
 
     const [allCountries, setAllCountries] = useState(null);
     const [loaded, setLoaded] = useState(false);
@@ -102,65 +102,51 @@ export default function App(){
             status_text.innerText = hmm_texts[Math.floor(Math.random() * hmm_texts.length)];
             flag.classList.remove("shake-horizontal");
             flag.classList.remove("heartbeat");
-            flag.classList.add("scale-in-center");
         })
     }
 
     return(
         <>
-            <MainContainer>
-                <TitleContainer>
-                    <TitleLine>
-                        <FlagIcon className="fab fa-font-awesome-flag"></FlagIcon>
-                        <Title>Flag Quest</Title>
-                        <FlagIcon className="fab fa-font-awesome-flag"></FlagIcon>
-                    </TitleLine>
-                    <StreakLine>
-                        <FireIcon className="fas fa-fire"></FireIcon>
-                        <StreakText>Streak: {streak}</StreakText>
-                    </StreakLine>
-                </TitleContainer>
-                <FlagContainer id="flag_container">
-                    <MainFlag 
-                        id="flag" 
-                        src={"flags/"+randomCountries[activeCountryIndex].cca2.toLowerCase()+".svg"}
-                        className="scale-in-center"
-                    />
-                </FlagContainer>
-                <StatusText id="status_text">Which country?</StatusText>
-                <ButtonsRow>
-                    <CountryButton 
-                        id={randomCountries[0].id}
-                        className="answer_button"
-                        onClick={answerClicked}>
-                        {randomCountries[0].name.common}
-                    </CountryButton>
-                    <CountryButton 
-                        id={randomCountries[1].id}
-                        className="answer_button"
-                        onClick={answerClicked}>
-                        {randomCountries[1].name.common}
-                    </CountryButton>
-                </ButtonsRow>
-                <ButtonsRow>
-                    <CountryButton 
-                        id={randomCountries[2].id}
-                        className="answer_button"
-                        onClick={answerClicked}>
-                        {randomCountries[2].name.common}
-                    </CountryButton>
-                    <CountryButton 
-                        id={randomCountries[3].id}
-                        className="answer_button"
-                        onClick={answerClicked}>
-                        {randomCountries[3].name.common}
-                    </CountryButton>
-                </ButtonsRow>
-                <Footer>
-                    <span>Created by TrentLS</span>
-                    <GithubIcon className="fab fa-github"></GithubIcon>
-                </Footer>
-            </MainContainer>
+            {streak > 0
+                ?<StreakText>Streak: {streak}</StreakText>
+                :<StreakText></StreakText>
+            }
+            <FlagContainer id="flag_container">
+                <MainFlag 
+                    id="flag" 
+                    src={"flags/"+randomCountries[activeCountryIndex].cca2.toLowerCase()+".svg"}
+                    className="scale-in-center"
+                />
+            </FlagContainer>
+            <StatusText id="status_text">Which country?</StatusText>
+            <ButtonsRow>
+                <CountryButton 
+                    id={randomCountries[0].id}
+                    className="answer_button"
+                    onClick={answerClicked}>
+                    {randomCountries[0].name.common}
+                </CountryButton>
+                <CountryButton 
+                    id={randomCountries[1].id}
+                    className="answer_button"
+                    onClick={answerClicked}>
+                    {randomCountries[1].name.common}
+                </CountryButton>
+            </ButtonsRow>
+            <ButtonsRow>
+                <CountryButton 
+                    id={randomCountries[2].id}
+                    className="answer_button"
+                    onClick={answerClicked}>
+                    {randomCountries[2].name.common}
+                </CountryButton>
+                <CountryButton 
+                    id={randomCountries[3].id}
+                    className="answer_button"
+                    onClick={answerClicked}>
+                    {randomCountries[3].name.common}
+                </CountryButton>
+            </ButtonsRow>
         </>
     )
 }
@@ -175,12 +161,6 @@ const FlagContainer = styled.div`
     border-radius:0.25em;
 `;
 
-const MainContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`;
-
 const ButtonsRow = styled.div`
     display:flex;
     width:100%;
@@ -192,7 +172,7 @@ const CountryButton = styled.button`
     height: 110px;
     background-color: white;
     border: none;
-    font-size: 18px;
+    font-size: 22px;
     margin:10px;
     border-radius:4px;
     padding:6px;
@@ -209,27 +189,8 @@ const CountryButton = styled.button`
 
 const MainFlag = styled.img`
     height:200px;
-    margin:25px;
+    margin:35px;
     display:block;
-`;
-
-const Title = styled.h1`
-    text-align:center;
-    color:white;
-    margin:0px;
-`;
-
-const TitleContainer = styled.div`
-    background: transparent;
-    width: 98%;
-    max-width: 490px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    border-radius: 0.5em;
-    color:white;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
 `;
 
 const StatusText = styled.h1`
@@ -238,40 +199,21 @@ const StatusText = styled.h1`
     font-size:20px;
 `;
 
-const Footer = styled.div`
-    color:#ffffff73;
-`;
-
-const StreakText = styled.p`
-    text-align:center;
-    margin:0px;
-    font-size:20px;
-`;
-
-const GithubIcon = styled.i`
-   margin-left:10px; 
-   cursor:pointer;
-`;
-
-const TitleLine = styled.div`
-    display:inline-flex;
-    align-items:center;
-`;
-
 const FlagIcon = styled.i`
-    color:#df00ff40;
+    color:white;
     font-size:25px;
     margin-left:10px;
     margin-right:10px;
 `;
-
-const StreakLine = styled.div`
-    display:inline-flex;
-    align-items:center;
-`;
-
-const FireIcon = styled.i`
-    color:#ff6000a8;
-    font-size:20px;
-    margin-right:10px;
+ 
+const StreakText = styled.h1`
+    margin:0px;
+    width:100%;
+    max-width:490px;
+    font-size:18px;
+    margin-left:6px;
+    margin-bottom:-22px;
+    margin-top:-12px;
+    height:18px;
+    text-align:center;
 `;
