@@ -44,7 +44,7 @@ export default function App(){
                         <Game/>
                     </Route>
                     <Route path="/account">
-                        <Account userData={userData}/>
+                        <Account userData={userData} url={url}/>
                     </Route>
                 </Switch>
                 <Footer>
