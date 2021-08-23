@@ -43,23 +43,6 @@ export function Account(props){
 
     function LogInFormSubmit(values){
         setSubmitting(true);
-        fetch(url+'/log_in?api_key='+API_KEY,{
-            method:'POST',
-            mode:'cors',
-            headers:{'Content-Type': 'application/json'},
-            body:JSON.stringify(values)
-        }).then(res => res.json()).then((result)=>{
-            if(result.status == true){
-                Cookies.set('auth_token',result.token);
-                window.location.reload(false);
-                document.getElementById("login_form_form").reset();
-                setSubmitting(false);
-            } else {
-                console.log(result.message)
-                setErrorMessage(result.message)
-                document.getElementById("login_form_form").reset();
-                setSubmitting(false);
-            }
     }
 
     function handleLoginSelected(){
