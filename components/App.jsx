@@ -11,8 +11,8 @@ import {TopBar} from './TopBar.jsx';
 import {Game} from './Game.jsx';
 import {Account} from './Account.jsx';
 
-const url = 'https://www.flag.quest/flag-quest-backend';
-//const url = 'http://localhost:5000';
+//const url = 'https://www.flag.quest/flag-quest-backend';
+const url = 'http://localhost:5000';
 
 export default function App(){
 
