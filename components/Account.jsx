@@ -11,6 +11,7 @@ export function Account(props){
     var API_KEY = props.API_KEY;
 
     const [isSubmitting, setSubmitting] = useState(false); 
+    const [errorMessage, setErrorMessage] = useState(null);
 
     function RegisterFormSubmit(values){
         setSubmitting(true);
@@ -21,14 +22,44 @@ export function Account(props){
             headers:{'Content-Type': 'application/json'},
             body:JSON.stringify(values)
         }).then(res => res.json()).then((result)=>{
-            Cookies.set('auth_token',result.token);
-            window.location.reload(false);
+            if(result.status == true){
+                Cookies.set('auth_token',result.token);
+                window.location.reload(false);
+                document.getElementById("register_form_form").reset();
+                setSubmitting(false);
+            } else {
+                console.log(result.message)
+                setErrorMessage(result.message)
+                document.getElementById("register_form_form").reset();
+                setSubmitting(false);
+            }
         })
+    }
+
+    function handleLogOut(){
+        Cookies.remove('auth_token');
+        window.location.reload(false);
     }
 
     function LogInFormSubmit(values){
         setSubmitting(true);
-        console.log(values);
+        fetch(url+'/log_in?api_key='+API_KEY,{
+            method:'POST',
+            mode:'cors',
+            headers:{'Content-Type': 'application/json'},
+            body:JSON.stringify(values)
+        }).then(res => res.json()).then((result)=>{
+            if(result.status == true){
+                Cookies.set('auth_token',result.token);
+                window.location.reload(false);
+                document.getElementById("login_form_form").reset();
+                setSubmitting(false);
+            } else {
+                console.log(result.message)
+                setErrorMessage(result.message)
+                document.getElementById("login_form_form").reset();
+                setSubmitting(false);
+            }
     }
 
     function handleLoginSelected(){
@@ -97,9 +128,10 @@ export function Account(props){
                 onSubmit={(values) => {RegisterFormSubmit(values);}}
             >
                 {({errors,touched}) => (
-                    <Form>
+                    <Form id="register_form_form">
                         <AccountForm id="register_form">
                             <FormHeading>Register</FormHeading>
+                            <ErrorMessage id="error_message">{errorMessage}</ErrorMessage>
                             <AccountField 
                                 name="username" 
                                 type="text"
@@ -142,6 +174,7 @@ export function Account(props){
             </Formik>
             <Formik
                 initialValues={{email:'',password:'',remember:false}}
+                onSubmit={(values) => {LogInFormSubmit(values);}}
             >
                 {({errors,touched}) => (
                     <Form>
@@ -183,7 +216,7 @@ export function Account(props){
                 <AccountPage>
                     <UsernameLine>
                         <UsernameHeading>{userData.username}</UsernameHeading>
-                        <LogOutButton>
+                        <LogOutButton onClick={handleLogOut}>
                             <i className="fas fa-sign-out-alt"></i>
                             <p>Log Out</p>
                         </LogOutButton>
@@ -232,8 +265,8 @@ const AccountField = styled(Field)`
     margin-left: 11px;
     margin-right: 11px;
     font-size: 20px;
-    background-color: #00000029;
-    color: white;
+    background-color: #00000029 !important;
+    color: white !important;
     border: none;
     margin-top: 6px;
     border-radius: 5px;
@@ -340,4 +373,11 @@ const LogOutButton = styled.div`
     position:absolute;
     right:0px;
     top:5px;
+`;
+
+const ErrorMessage = styled.p`
+    margin:0px;
+    margin-left:11px;
+    color:black;
+    font-size:19px;
 `;

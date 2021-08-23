@@ -23,14 +23,9 @@ export default function App(){
     useEffect(()=>{
         if(token == null){
             setToken(Cookie.get('auth_token') ? Cookie.get('auth_token') : null);
-        } else {
-            console.log('got token: '+token)
         }
-
         if(API_KEY == null){
             setAPI_KEY(process.env['FLAG_QUEST_API_KEY'])
-        } else {
-            console.log('got api key: '+API_KEY)
         }
 
         if(userData == null && token != null){
