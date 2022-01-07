@@ -1,5 +1,7 @@
 # flag-quest
-A flag memorization game build in react. Meant to be played on mobile.
+A flag memorization game build in react. Meant to be played on mobile. 
+
+May turn it into an app at some point.
 
 Play [flag.quest](https://www.flag.quest/)
 
