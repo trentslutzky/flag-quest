@@ -24,6 +24,7 @@ export default function App() {
             </Route>
           </Switch>
         </MainContent>
+        <Space/>
         <Footer>
           <GHLink href="https://github.com/trentslutzky" target="_blank">
             <span>TrentLS</span>
@@ -36,6 +37,10 @@ export default function App() {
   );
 }
 
+const Space = styled.div`
+  flex-grow:1;
+`;
+
 const GHLink = styled.a`
   color: #ffffff73;
   text-decoration: none;
@@ -45,17 +50,29 @@ const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  height:100vh;
+  max-height:1400px;
 `;
 
 const MainContent = styled.div`
   width: 100%;
+  height:100%;
+  max-width:900px;
+  padding-right:10px;
+  padding-left:10px;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 const Footer = styled.div`
+  width:100%;
   color: #ffffff73;
+  padding:2vh;
+  display:flex;
+  align-items:center;
+  flex-direction:column;
+  font-size:2vh;
 `;
 
 const GithubIcon = styled.i`

@@ -27,11 +27,13 @@ export function TopBar() {
 
 const TopBarContainer = styled.div`
   width: 100%;
-  max-width: 470px;
-  height: 50px;
-  font-size: 24px;
-  margin-top: 15px;
+  max-width: 900px;
+  margin-top: 10px;
   margin-bottom: 15px;
+  font-size: 30px;
+  @media (max-width: 800px) {
+    font-size: 4vw;
+  }
 `;
 
 const TitleLine = styled.div`

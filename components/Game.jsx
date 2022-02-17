@@ -93,10 +93,6 @@ export function Game() {
     }
   });
 
-  useEffect(()=>{
-    getUserCountry()
-  },[])
-
   function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -172,12 +168,6 @@ export function Game() {
     username = username.replace(" ", "");
     setUsername(username);
   }
-
-  async function getUserCountry(){
-    const response = await fetch("https://ipinfo.io/json")
-    console.log(response)
-  }
-
 
   async function saveScore() {
     setSavingText("Saving to leaderboard...");
@@ -295,27 +285,31 @@ export function Game() {
 
 const FlagContainer = styled.div`
   background-color: #0000003b;
-  max-width: 490px;
   display: flex;
+  height:40%;
+  min-height:40%;
   flex-direction: column;
-  width: 98%;
+  width: 100%;
   margin-bottom: 6px;
   border-radius: 0.25em;
 `;
 
 const ButtonsRow = styled.div`
-  display: flex;
-  width: 100%;
-  max-width: 500px;
+  margin-right:-40px;
+  margin-left:-40px;
+  display:flex;
+  width: 103%;
+  max-width: 103%;
+  height:25%;
 `;
 
 const CountryButton = styled.button`
   width: 50%;
-  height: 110px;
+  height: 95%;
   background-color: white;
   border: none;
-  font-size: 22px;
-  margin: 10px;
+  color:black;
+  margin:10px;
   border-radius: 4px;
   padding: 6px;
   font-family: "Montserrat", sans-serif;
@@ -327,18 +321,28 @@ const CountryButton = styled.button`
   &:disabled {
     color: white;
   }
+  font-size: 30px;
+  @media (max-width: 800px) {
+    font-size: 4vw;
+  }
 `;
 
 const MainFlag = styled.img`
-  height: 200px;
-  margin: 35px;
+  height:100%;
   display: block;
+  margin-bottom:3%;
+  margin-right:3%;
+  margin-left:3%;
 `;
 
 const StatusText = styled.h1`
   text-align: center;
   margin: 10px;
-  font-size: 20px;
+  font-size: 30px;
+  @media (max-width: 800px) {
+    font-size: 4vw;
+    margin:0;
+  }
 `;
 
 const FlagIcon = styled.i`
@@ -349,33 +353,30 @@ const FlagIcon = styled.i`
 `;
 
 const StreakText = styled.h1`
-  margin: 0px;
   width: 100%;
-  max-width: 490px;
-  font-size: 18px;
-  margin-left: 6px;
-  margin-top: 7px;
-  margin-bottom: -23px;
-  height: 18px;
   text-align: center;
   z-index: 999;
   transition: all 0.5s;
+  font-size: 30px;
+  @media (max-width: 800px) {
+    font-size: 4vw;
+  }
 `;
 
 const StreakTextBig = styled(StreakText)`
   color: #98ff98;
-  font-size: 26px;
-  margin-top: 6px;
-  margin-bottom: -21px;
-  height: 22px;
+  font-size: 35px;
+  @media (max-width: 800px) {
+    font-size: 5vw;
+  }
 `;
 
 const StreakTextBigger = styled(StreakText)`
   color: #ffde5b;
-  font-size: 36px;
-  margin-top: 2px;
-  margin-bottom: -8px;
-  height: 22px;
+  font-size: 37px;
+  @media (max-width: 800px) {
+    font-size: 5vw;
+  }
 `;
 
 const ModalContainer = styled.div`
@@ -393,7 +394,6 @@ const ModalContainer = styled.div`
 
 const ModalCard = styled.div`
   width: 100%;
-  max-width: 450px;
   background: #84bedae0;
   margin-top: 100px;
   border-radius: 5px;
