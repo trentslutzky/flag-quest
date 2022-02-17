@@ -19,6 +19,10 @@ psd
 thumb
 sketch
 
+.env
+
+.parcel-cache
+
 ### yarn ###
 # https://yarnpkg.com/advanced/qa#which-files-should-be-gitignored
 
