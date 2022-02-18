@@ -400,7 +400,6 @@ const ModalCard = styled.div`
     width:90%;
     height: unset;
   }
-  overflow:scroll;
 `;
 
 const ModalHeading = styled.span`
