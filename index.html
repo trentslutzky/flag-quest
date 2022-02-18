@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="overflow:hidden">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -20,6 +20,15 @@
   </head>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+    html {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    }
+
     body {
       color: white;
       font-family: "Montserrat", sans-serif;
@@ -36,7 +45,8 @@
       ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
       background-attachment: fixed;
       background-repeat: no-repeat;
-      height: 50vh;
+      height: 100vh;
+      overflow: hidden;
     }
 
     .gradientbackgroundold {

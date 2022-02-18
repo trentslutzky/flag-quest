@@ -172,7 +172,6 @@ export function Game() {
   async function saveScore() {
     setSavingText("Saving to leaderboard...");
     setSavingScore(true);
-    const my_country = await getUserCountry()
     await delay(200);
     const { data, error } = await supabase
       .from("leaderboard")
@@ -196,8 +195,7 @@ export function Game() {
   return (
     <>
       <FlagContainer id="flag_container">
-        {streak == 0 && <StreakText></StreakText>}
-        {streak > 0 && streak <= 5 && <StreakText>Streak: {streak}</StreakText>}
+        {streak >= 0 && streak <= 5 && <StreakText>Streak: {streak}</StreakText>}
         {streak > 5 && streak <= 10 && (
           <StreakTextBig>Streak: {streak} 🤓</StreakTextBig>
         )}
@@ -287,8 +285,6 @@ export function Game() {
 const FlagContainer = styled.div`
   background-color: #0000003b;
   display: flex;
-  height:40%;
-  min-height:40%;
   flex-direction: column;
   width: 100%;
   margin-bottom: 6px;
@@ -296,8 +292,6 @@ const FlagContainer = styled.div`
 `;
 
 const ButtonsRow = styled.div`
-  margin-right:-40px;
-  margin-left:-40px;
   display:flex;
   width: 103%;
   max-width: 103%;
@@ -310,7 +304,7 @@ const CountryButton = styled.button`
   background-color: white;
   border: none;
   color:black;
-  margin:10px;
+  margin:1vw;
   border-radius: 4px;
   padding: 6px;
   font-family: "Montserrat", sans-serif;
@@ -329,11 +323,10 @@ const CountryButton = styled.button`
 `;
 
 const MainFlag = styled.img`
-  height:100%;
+  height:26vh;
   display: block;
-  margin-bottom:3%;
-  margin-right:3%;
-  margin-left:3%;
+  margin:3%;
+  margin-top:0;
 `;
 
 const StatusText = styled.h1`
@@ -353,12 +346,14 @@ const FlagIcon = styled.i`
   margin-right: 10px;
 `;
 
-const StreakText = styled.h1`
+const StreakText = styled.span`
   width: 100%;
   text-align: center;
   z-index: 999;
   transition: all 0.5s;
   font-size: 30px;
+  margin-bottom: 0.5vh;
+  margin-top: 0.5vh;
   @media (max-width: 800px) {
     font-size: 4vw;
   }
@@ -366,18 +361,10 @@ const StreakText = styled.h1`
 
 const StreakTextBig = styled(StreakText)`
   color: #98ff98;
-  font-size: 35px;
-  @media (max-width: 800px) {
-    font-size: 5vw;
-  }
 `;
 
 const StreakTextBigger = styled(StreakText)`
   color: #ffde5b;
-  font-size: 37px;
-  @media (max-width: 800px) {
-    font-size: 5vw;
-  }
 `;
 
 const ModalContainer = styled.div`
@@ -394,9 +381,8 @@ const ModalContainer = styled.div`
 `;
 
 const ModalCard = styled.div`
-  width: 100%;
+  max-width: 650px;
   background: #84bedae0;
-  margin-top: 100px;
   border-radius: 5px;
   color: black;
   display: flex;
@@ -404,64 +390,83 @@ const ModalCard = styled.div`
   align-items: center;
   padding-top: 15px;
   padding-bottom: 15px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  @media (min-height: 550px) {
+    top: 20%;
+    left: 50%;
+    translate: -50% -20%;
+    width:90%;
+    height: unset;
+  }
+  overflow:scroll;
 `;
 
 const ModalHeading = styled.span`
-  font-size: 23px;
   color: #e94747;
   text-align: center;
+  font-size: 25px;
+  @media (max-width: 800px) {
+    font-size:5vw;
+  }
 `;
 
 const ModalHeadingTwo = styled(ModalHeading)`
   color:white;
-  font-size: 16px;
 `;
 
 const ModalHeadingThree = styled(ModalHeading)`
-  font-size: 17px;
-  margin-top: 23px;
   color: #4863cc;
+  margin-top: 18px;
+  @media (max-width: 800px) {
+    margin-top:2vw;
+  }
 `;
 
 const ModalScore = styled.span`
+  margin: -10px;
+  color: #4863cc;
   font-size: 103px;
-  margin: -3px;
-  background: #003b4a;
-  background: -webkit-linear-gradient(to top, #003b4a 0%, #165987 41%);
-  background: -moz-linear-gradient(to top, #003b4a 0%, #165987 41%);
-  background: linear-gradient(to top, #003b4a 0%, #165987 41%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  @media (max-height: 800px) {
+    font-size:22vw;
+  }
 `;
 
 const UsernameInput = styled.input`
   font-family: Montserrat;
-  font-size: 20px;
   margin-top: 17px;
   background: #ffffffe8;
   border: none;
   border-radius: 4px;
   padding: 9px;
   text-align: center;
+  max-width:80%;
+  font-size: 25px;
+  @media (max-width: 800px) {
+    font-size:5vw;
+  }
 `;
 
 const ScoreSubmitButton = styled.button`
-  font-size: 20px;
   font-family: Montserrat;
   background: #4863cc;
   border: none;
   border-radius: 4px;
   margin-top: 16px;
-  width: 59%;
-  height: 35px;
+  width: 85%;
+  padding: 9px;
   color: white;
   cursor: pointer;
-  margin-bottom: 9px;
   &:hover {
     background: #3151cd;
   }
   &:active {
     background: #1b40ce;
+  }
+  font-size: 25px;
+  @media (max-width: 800px) {
+    font-size:5vw;
   }
 `;
 
