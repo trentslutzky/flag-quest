@@ -211,6 +211,7 @@ export function Game() {
             randomCountries[activeCountryIndex].cca2.toLowerCase() +
             ".svg"
           }
+          alt="couldn't load flag..."
           className="scale-in-center"
         />
       </FlagContainer>
